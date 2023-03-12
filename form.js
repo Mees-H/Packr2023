@@ -4,6 +4,8 @@ class Form {
     step;
     length;
     width;
+    interval;
+    type;
     spans;
 
     constructor() {
@@ -16,12 +18,23 @@ class Form {
 
     resetForm() {
 
+        let formgroup = document.getElementsByClassName("form-group")
+        if (formgroup.length != 0) {
+            formgroup[0].remove();
+        }
         switch(this.step) {
             case 1:
                 this.createSizeForm();
             break;
             case 2:
-                alert("test");
+                this.createArrivalForm();
+            break;
+            case 3:
+                this.createTypeForm();
+            break;
+            case 4:
+                //this.createTruck();
+                alert("success!")
             break;
         }
     }
@@ -29,9 +42,34 @@ class Form {
     createSizeForm() {
         let formgroup = document.createElement("div");
         formgroup.className = "form-group ml-2 mt-2 border border-dark rounded";
+        formgroup.id = "size";
     
         formgroup = this.addLength(formgroup);
         formgroup = this.addWidth(formgroup);
+        formgroup = this.addButton(formgroup);
+        formgroup = this.addSteps(formgroup);
+
+        this.form.appendChild(formgroup);
+    }
+
+    createArrivalForm() {
+        let formgroup = document.createElement("div");
+        formgroup.className = "form-group ml-2 mt-2 border border-dark rounded";
+        formgroup.id = "arrival";
+    
+        formgroup = this.addInterval(formgroup);
+        formgroup = this.addButton(formgroup);
+        formgroup = this.addSteps(formgroup);
+
+        this.form.appendChild(formgroup);
+    }
+
+    createTypeForm() {
+        let formgroup = document.createElement("div");
+        formgroup.className = "form-group ml-2 mt-2 border border-dark rounded";
+        formgroup.id = "type";
+    
+        formgroup = this.addTypes(formgroup);
         formgroup = this.addButton(formgroup);
         formgroup = this.addSteps(formgroup);
 
@@ -73,25 +111,71 @@ class Form {
         return formgroup;
     }
 
+    addInterval(formgroup) {
+        let label = document.createElement("label");
+        label.setAttribute("for", "interval");
+        label.textContent = "Interval";
+        label.className = "mt-2";
+
+        let input = document.createElement("input");
+        input.setAttribute("type", "number");
+        input.className = "form-control";
+        input.id = "interval";
+        input.setAttribute("placeholder", "Interval...")
+
+        formgroup.appendChild(label);
+        formgroup.appendChild(input);
+
+        return formgroup;
+    }
+
+    addTypes(formgroup) {
+        let label = document.createElement("label");
+        label.setAttribute("for", "type");
+        label.textContent = "Type";
+        label.className = "mt-2";
+
+        let input = document.createElement("select");
+        input.className = "form-control";
+        input.id = "type";
+
+        let option1 = document.createElement("option");
+        let option2 = document.createElement("option");
+        let option3 = document.createElement("option");
+        let option4 = document.createElement("option");
+        let option5 = document.createElement("option");
+
+        option1.textContent = "Cold";
+        option2.textContent = "Fragile";
+        option3.textContent = "General";
+        option4.textContent = "Pallets";
+        option5.textContent = "Quick"
+
+        input.appendChild(option1);
+        input.appendChild(option2);
+        input.appendChild(option3);
+        input.appendChild(option4);
+        input.appendChild(option5);
+
+        formgroup.appendChild(label);
+        formgroup.appendChild(input);
+
+        return formgroup;
+    }
+
     addButton(formgroup) {
         let button = document.createElement("button");
+        let step = this.step;
         button.className = "btn btn-primary mt-2";
         button.textContent = "Next";
         button.id = "next";
 
         let spans = document.getElementsByClassName("step");
         button.onclick = () => {
-            this.step = this.step + 1;
-            for (let index = 0; index < 4; index++) {
-                if (step == index + 1) {
-                    spans[index].style.opacity = 1;
-                }
-                else {
-                    spans[index].style.opacity = 0.5;
-                }
-            }
-            this.length = document.getElementById("length").value;
-            this.width = document.getElementById("width").value;
+            step++;
+            this.setOpacities(spans);
+            this.setValues();
+            this.step = step;
             this.resetForm();
         };
         formgroup.appendChild(button);
@@ -100,7 +184,7 @@ class Form {
 
     addSteps(formgroup) {
         let spans = [];
-        for (let index = 0; index < 4; index++) {
+        for (let index = 0; index < 3; index++) {
             let span = document.createElement("span");
             span.className = "step";
             spans[index] = span;
@@ -108,8 +192,34 @@ class Form {
         }
         spans[0].style.opacity = 1;
         this.spans = spans;
-        
+        this.setOpacities(spans);
         return formgroup;
+    }
+
+    setOpacities(spans) {
+        for (let index = 0; index < 3; index++) {
+            if (this.step == index + 1) {
+                spans[index].style.opacity = 1;
+            }
+            else {
+                spans[index].style.opacity = 0.5;
+            }
+        }
+    }
+
+    setValues() {
+        if (document.getElementById("length") != null) {
+            this.length = document.getElementById("length").value;
+        }
+        if (document.getElementById("width") != null) {
+            this.width = document.getElementById("width").value;
+        }
+        if (document.getElementById("interval") != null) {
+            this.interval = document.getElementById("interval").value;
+        }
+        if (document.getElementById("type") != null) {
+            this.type = document.getElementById("type").value;
+        }
     }
 }
 
