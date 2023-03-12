@@ -13,3 +13,18 @@
     display: inline-block;
     opacity: 0.5;
 }
+
+#container {
+    display: flex;
+    justify-content: space-between;
+}
+
+img {
+    height: 200px;
+    width: auto;
+}
+
+#trucks {
+    display: flex;
+    flex-direction: column;
+}

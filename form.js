@@ -10,9 +10,6 @@ class Form {
 
     constructor() {
         this.form = document.getElementById("form");
-        this.form.addEventListener("submit", function(event) {
-          event.preventDefault();
-        })
         this.step = 1;
     }
 
@@ -33,8 +30,9 @@ class Form {
                 this.createTypeForm();
             break;
             case 4:
-                //this.createTruck();
-                alert("success!")
+                this.createTruck();
+                this.step = 1;
+                this.createSizeForm();
             break;
         }
     }
@@ -131,13 +129,13 @@ class Form {
 
     addTypes(formgroup) {
         let label = document.createElement("label");
-        label.setAttribute("for", "type");
+        label.setAttribute("for", "selecttype");
         label.textContent = "Type";
         label.className = "mt-2";
 
         let input = document.createElement("select");
         input.className = "form-control";
-        input.id = "type";
+        input.id = "selecttype";
 
         let option1 = document.createElement("option");
         let option2 = document.createElement("option");
@@ -149,7 +147,9 @@ class Form {
         option2.textContent = "Fragile";
         option3.textContent = "General";
         option4.textContent = "Pallets";
-        option5.textContent = "Quick"
+        option5.textContent = "Quick";
+
+        option1.setAttribute("value", "Cold");
 
         input.appendChild(option1);
         input.appendChild(option2);
@@ -217,9 +217,18 @@ class Form {
         if (document.getElementById("interval") != null) {
             this.interval = document.getElementById("interval").value;
         }
-        if (document.getElementById("type") != null) {
-            this.type = document.getElementById("type").value;
+        if (document.getElementById("selecttype") != null) {
+            this.type = document.getElementById("selecttype").value;
         }
+    }
+
+    createTruck() {
+        let truck = new Truck(this.length, this.width, this.interval, this.type);
+        truck.addTruck();
+    }
+
+    validate() {
+        
     }
 }
 
