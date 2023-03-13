@@ -10,6 +10,14 @@ class Form {
 
     constructor() {
         this.form = document.getElementById("form");
+        this.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.step++;
+            this.setOpacities(this.spans);
+            this.setValues();
+            this.validate();
+            this.resetForm();
+        });
         this.step = 1;
     }
 
@@ -173,14 +181,7 @@ class Form {
         button.id = "next";
 
         let spans = document.getElementsByClassName("step");
-        button.onclick = () => {
-            step++;
-            this.setOpacities(spans);
-            this.setValues();
-            this.step = step;
-            //this.validate();
-            this.resetForm();
-        };
+      
         formgroup.appendChild(button);
         return formgroup;
     }
@@ -232,7 +233,7 @@ class Form {
 
     validate() {
         let form = document.getElementById("form-group");
-        if ((this.width == "" || this.length == "") && this.step == 2) {
+        if ((this.width < 10 || this.length < 10) && this.step == 2) {
             let error = document.createElement("p");
             error.innerText = "The length and width fields are required!";
             error.className = "text-danger";
