@@ -83,6 +83,7 @@ class Form {
         input.setAttribute("type", "number");
         input.className = "form-control";
         input.id = "length";
+        input.required = true;
         input.setAttribute("placeholder", "Length...")
 
         formgroup.appendChild(label);
@@ -101,6 +102,7 @@ class Form {
         input.setAttribute("type", "number");
         input.className = "form-control";
         input.id = "width";
+        input.required = true;
         input.setAttribute("placeholder", "Width...")
 
         formgroup.appendChild(label);
@@ -176,6 +178,7 @@ class Form {
             this.setOpacities(spans);
             this.setValues();
             this.step = step;
+            //this.validate();
             this.resetForm();
         };
         formgroup.appendChild(button);
@@ -228,7 +231,19 @@ class Form {
     }
 
     validate() {
-        
+        let form = document.getElementById("form-group");
+        if ((this.width == "" || this.length == "") && this.step == 2) {
+            let error = document.createElement("p");
+            error.innerText = "The length and width fields are required!";
+            error.className = "text-danger";
+            form.appendChild(error);
+            alert("test");
+            this.step--;
+            
+        }
+        if (this.interval == "" && this.step == 3) {
+            this.step--;
+        }
     }
 }
 
