@@ -24,9 +24,15 @@ img {
     width: auto;
 }
 
-#trucks {
+.truckcontainer {
+    width: 200px;
+}
+
+.trucks {
     display: flex;
     flex-direction: column;
+    position: absolute;
+    right: 1%;
 }
 
 .btn-secondary {
