@@ -28,3 +28,8 @@ img {
     display: flex;
     flex-direction: column;
 }
+
+.btn-secondary {
+    width:75px;
+    height:50px;
+}
