@@ -17,6 +17,7 @@ class Truck {
 
         let truck = document.createElement("img"); 
         truck.src = "https://cdn-icons-png.flaticon.com/512/6643/6643396.png";
+        truck.id = "truck"
 
         trucks.appendChild(truck);
     }

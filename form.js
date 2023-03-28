@@ -39,9 +39,10 @@ class Form {
 
     createSizeForm() {
         let formgroup = document.createElement("div");
-        formgroup.className = "form-group ml-2 mt-2 border border-dark rounded";
+        formgroup.className = "form-group ml-2 mt-2 mb-2 border border-dark rounded";
         formgroup.id = "size";
     
+        formgroup = this.addTitle(formgroup);
         formgroup = this.addLength(formgroup);
         formgroup = this.addWidth(formgroup);
         formgroup = this.addButton(formgroup);
@@ -52,9 +53,10 @@ class Form {
 
     createArrivalForm() {
         let formgroup = document.createElement("div");
-        formgroup.className = "form-group ml-2 mt-2 border border-dark rounded";
+        formgroup.className = "form-group ml-2 mt-2 mb-2 border border-dark rounded";
         formgroup.id = "arrival";
     
+        formgroup = this.addTitle(formgroup);
         formgroup = this.addInterval(formgroup);
         formgroup = this.addButton(formgroup);
         formgroup = this.addSteps(formgroup);
@@ -64,14 +66,22 @@ class Form {
 
     createTypeForm() {
         let formgroup = document.createElement("div");
-        formgroup.className = "form-group ml-2 mt-2 border border-dark rounded";
+        formgroup.className = "form-group ml-2 mt-2 mb-2 border border-dark rounded";
         formgroup.id = "type";
     
+        formgroup = this.addTitle(formgroup);
         formgroup = this.addTypes(formgroup);
         formgroup = this.addButton(formgroup);
         formgroup = this.addSteps(formgroup);
 
         this.form.appendChild(formgroup);
+    }
+
+    addTitle(formgroup) {
+        let formTitle = document.createElement("h5");
+        formTitle.textContent = "Create new truck";
+        formgroup.appendChild(formTitle);
+        return formgroup;
     }
 
     addLength(formgroup) {
@@ -187,12 +197,16 @@ class Form {
 
     addSteps(formgroup) {
         let spans = [];
+        let steps = document.createElement("div");
+        steps.className = "steps";
         for (let index = 0; index < 3; index++) {
             let span = document.createElement("span");
             span.className = "step";
             spans[index] = span;
-            formgroup.appendChild(span);
+
+            steps.appendChild(span);
         }
+        formgroup.appendChild(steps);
         spans[0].style.opacity = 1;
         this.spans = spans;
         this.setOpacities(spans);

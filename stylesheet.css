@@ -1,6 +1,12 @@
 .form-group {
     width: 200px;
     padding: 10px;
+    min-height: 250px;
+    position: relative;
+}
+
+.small-form-group {
+    min-height: 50px;
 }
 
 .step {
@@ -14,17 +20,73 @@
     opacity: 0.5;
 }
 
+.steps {
+    margin-top: 15px;
+    margin-left: 20px;
+    position: absolute;
+    bottom: 15px;
+}
+
+.centeralign {
+    text-align: center;
+}
+
 #container {
     display: flex;
     justify-content: space-between;
 }
 
-img {
+#next {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+#truck {
     height: 200px;
     width: auto;
 }
 
 #trucks {
+    position: absolute;
+    left: 720px;
     display: flex;
     flex-direction: column;
+}
+
+#conveyorbelts {
+    position: absolute;
+    left: 250px;
+    width:500px;
+    display: flex;
+    flex-direction: column;
+}
+
+#conveyorbeltRow {
+    display: flex;
+    flex-direction: row;
+
+}
+
+#conveyorbelt {
+    margin-top: 90px;
+    margin-bottom: 30px;
+    height:80px;
+    width:420px;
+}
+
+#tube {
+    margin-top: 65px;
+    margin-bottom: 55px;
+    height:80px;
+    width:50px;
+    cursor: pointer;
+}
+
+.rotateimg180 {
+    -webkit-transform:rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
