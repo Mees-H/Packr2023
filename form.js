@@ -7,9 +7,21 @@ class Form {
     interval;
     type;
     spans;
+    error;
 
     constructor() {
         this.form = document.getElementById("form");
+        this.error = document.createElement("p");
+        this.form.appendChild(this.error);
+        this.error.id = "error";
+        this.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.step++;
+            this.setOpacities(this.spans);
+            this.setValues();
+            this.validate();
+            this.resetForm();
+        });
         this.step = 1;
     }
 
@@ -93,7 +105,6 @@ class Form {
         input.setAttribute("type", "number");
         input.className = "form-control";
         input.id = "length";
-        input.required = true;
         input.setAttribute("placeholder", "Length...")
 
         formgroup.appendChild(label);
@@ -112,7 +123,6 @@ class Form {
         input.setAttribute("type", "number");
         input.className = "form-control";
         input.id = "width";
-        input.required = true;
         input.setAttribute("placeholder", "Width...")
 
         formgroup.appendChild(label);
@@ -183,14 +193,7 @@ class Form {
         button.id = "next";
 
         let spans = document.getElementsByClassName("step");
-        button.onclick = () => {
-            step++;
-            this.setOpacities(spans);
-            this.setValues();
-            this.step = step;
-            //this.validate();
-            this.resetForm();
-        };
+      
         formgroup.appendChild(button);
         return formgroup;
     }
@@ -245,19 +248,30 @@ class Form {
     }
 
     validate() {
-        let form = document.getElementById("form-group");
-        if ((this.width == "" || this.length == "") && this.step == 2) {
-            let error = document.createElement("p");
+        let form = document.getElementById("form");
+        let error = document.getElementById("error");
+        error.innerText = "";
+        if ((this.width == 0 || this.length == 0) && this.step == 2) {
             error.innerText = "The length and width fields are required!";
             error.className = "text-danger";
-            form.appendChild(error);
-            alert("test");
             this.step--;
             
         }
-        if (this.interval == "" && this.step == 3) {
+
+        else if ((this.width > 10 || this.length > 10) && this.step == 2) {
+            error.innerText = "The length or width of the truck cannot exceed 10!";
+            error.className = "text-danger";
             this.step--;
         }
+
+        if ((this.interval <= 0 || this.interval > 60) && this.step == 3) {
+            error.innerText = "Please type in a number more than 0 and less than 60";
+            error.className = "text-danger";
+            this.step--;
+            
+        }
+        
     }
+
 }
 
