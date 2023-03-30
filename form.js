@@ -251,7 +251,7 @@ class Form {
         let form = document.getElementById("form");
         let error = document.getElementById("error");
         error.innerText = "";
-        if ((this.width == 0 || this.length == 0) && this.step == 2) {
+        if ((this.width <= 0 || this.length <= 0) && this.step == 2) {
             error.innerText = "The length and width fields are required!";
             error.className = "text-danger";
             this.step--;
