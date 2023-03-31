@@ -42,9 +42,19 @@
     bottom: 10px;
 }
 
-#truck {
+.truck {
     height: 200px;
     width: 200px;
+}
+
+.interiorcontainer {
+    display: grid;
+}
+
+.griditem {
+    width: 25px;
+    height: 25px;
+    border: 1px solid black
 }
 
 #trucks {
@@ -105,6 +115,7 @@
 .btn-secondary {
     width:75px;
     height:50px;
+    z-index: 1;
 }
 
 .package {
@@ -133,8 +144,8 @@
 }
 
 @keyframes move-0-3 {
-    from {left: 65px;}
-    to {left: 400px;}
+    from {right: 390px;}
+    to {right: 55px;}
 }
 
 @keyframes move-0-2 {
@@ -156,3 +167,4 @@
     from {left: 300px;}
     to {left: 400px;}
 }
+

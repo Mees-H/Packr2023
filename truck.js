@@ -1,10 +1,10 @@
 class Truck {
     
+    counter;
     length;
     width;
     interval;
     type;
-    trucks;
     docks;
     docknumber;
 
@@ -17,18 +17,19 @@ class Truck {
         for (let i = 0; i < this.docks.length; i++) {
            this.docks[i].addEventListener("click", this.changeTrucks);
         }
-        this.trucks = document.getElementsByClassName("trucks");
     }
 
     addTruck() {
-
+        let trucks = document.getElementsByClassName("trucks");
         let truck = document.createElement("img"); 
         truck.src = "https://cdn-icons-png.flaticon.com/512/6643/6643396.png";
-        truck.id = "truck"
-
+        truck.className = "truck";
+        let count = document.getElementsByClassName("truck").length;
+        truck.id = ++count;
+        truck.onclick = () => {this.openTruck(this.width,this.length)};
         this.docknumber = this.getDockNumber();
 
-        this.trucks[this.docknumber].appendChild(truck);
+        trucks[this.docknumber].appendChild(truck);
     }
 
     changeTrucks() {
@@ -52,6 +53,26 @@ class Truck {
             if (docks[i].checked) {
                 return i;
             }
+        }
+    }
+
+    openTruck(width, length) {
+        let interior = document.getElementById("interior");
+        let columns = "";
+
+        interior.style.height = length * 25 + "px";
+
+        for (let i = 0; i < width; i++) {
+            columns += "auto ";
+        }
+
+        interior.style.gridTemplateColumns = columns;
+
+        for (let i = 0; i < length*width; i++) {
+            let grid = document.createElement("div");
+            grid.textContent = i + 1;
+            grid.className = "griditem";
+            interior.appendChild(grid);
         }
     }
 }
