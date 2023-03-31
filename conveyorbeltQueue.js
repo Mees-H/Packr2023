@@ -15,9 +15,14 @@ class ConveyorbeltQueue {
     getPackageFromQueue() {
         if (this.getQueueLength() != 0){
             let firstPackage = this.packages[0];
+            return firstPackage;
+        }
+    }
+    
+    removePackageFromQueue() {
+        if (this.getQueueLength() != 0){
             this.packages.shift()
             this.reloadQueNumber();
-            return firstPackage;
         }
     }
 

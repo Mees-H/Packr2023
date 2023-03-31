@@ -109,11 +109,27 @@
 
 .package {
     position: absolute;
-    top: 70px;
-    height:50px;
-    width: 50px;
-    animation: move-0-3 5s linear forwards;
+    /* top: 70px; */
+    /* height: 50px;
+    width: 50px; */
+    /* animation: move-0-3 5s linear forwards; */
     animation-iteration-count: 1;
+}
+
+.package-drawsize-1 {
+    height: 50px;
+    width: 50px;
+}
+
+.package-drawsize-2 {
+    height: 75px;
+    width: 50px;
+    margin-top: -25px;
+}
+
+.package-drawsize-3 {
+    height: 50px;
+    width: 75px;
 }
 
 @keyframes move-0-3 {
