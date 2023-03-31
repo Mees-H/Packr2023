@@ -60,7 +60,7 @@ class Truck {
         let interior = document.getElementById("interior");
         let columns = "";
 
-        interior.style.height = length * 30 + "px";
+        interior.style.height = length * 25 + "px";
 
         for (let i = 0; i < width; i++) {
             columns += "auto ";
