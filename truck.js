@@ -58,6 +58,8 @@ class Truck {
 
     openTruck(width, length) {
         let interior = document.getElementById("interior");
+        interior.innerHTML = "";
+
         let columns = "";
 
         interior.style.height = length * 25 + "px";
@@ -70,8 +72,7 @@ class Truck {
 
         for (let i = 0; i < length*width; i++) {
             let grid = document.createElement("div");
-            grid.textContent = i + 1;
-            grid.className = "griditem";
+            grid.className = "griditem droppable";
             interior.appendChild(grid);
         }
     }

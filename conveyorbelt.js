@@ -37,6 +37,7 @@ class Conveyorbelt {
         let tube = document.createElement("img"); 
         tube.id = "tube"+this.numberOfConveyorbelts;
         tube.className = "tube rotateimg180";
+        tube.setAttribute('draggable', false);
         tube.src = "https://static.wikia.nocookie.net/newersupermariobroswii/images/b/bf/Warp_pipe.png/revision/latest?cb=20181227070915";
         
         tube.onclick = () => {
@@ -52,6 +53,7 @@ class Conveyorbelt {
         let conveyorbelt = document.createElement("img"); 
         conveyorbelt.id = "conveyorbelt"+this.numberOfConveyorbelts;
         conveyorbelt.className = "conveyorbelt";
+        conveyorbelt.setAttribute('draggable', false);
         conveyorbelt.src = "https://thumbs.gfycat.com/FrailTanHarlequinbug-max-1mb.gif";
         conveyorbeltRow.appendChild(conveyorbelt);
 

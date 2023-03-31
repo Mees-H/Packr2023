@@ -49,6 +49,8 @@
 
 .interiorcontainer {
     display: grid;
+    padding-top: 25px;
+    padding-right: 11px;
 }
 
 .griditem {
@@ -125,6 +127,7 @@
     width: 50px; */
     /* animation: move-0-3 5s linear forwards; */
     animation-iteration-count: 1;
+    z-index: 2;
 }
 
 .package-drawsize-1 {
@@ -149,22 +152,22 @@
 }
 
 @keyframes move-0-2 {
-    from {left: 65px;}
-    to {left: 300px;}
+    from {right: 300px;}
+    to {right: 65px;}
 }
 
 @keyframes move-0-1 {
-    from {left: 65px;}
-    to {left: 200px;}
+    from {right: 200px;}
+    to {right: 65px;}
 }
 
 @keyframes move-1-2 {
-    from {left: 200px;}
-    to {left: 300px;}
+    from {right: 300px;}
+    to {right: 200px;}
 }
 
 @keyframes move-2-3 {
-    from {left: 300px;}
-    to {left: 400px;}
+    from {right: 400px;}
+    to {right: 300px;}
 }
 

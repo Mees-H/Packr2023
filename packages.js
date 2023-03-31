@@ -75,17 +75,62 @@ class Package {
                 tetriomino.style.top = pageY - shiftY + "px";
             }
         
-            moveAt(event.pageX, event.pageY);
-        
+            let currentDroppable = null;
+
             function onMouseMove(event) {
+
                 moveAt(event.pageX, event.pageY);
+
+                let timeout = undefined;
+                if(event.target.closest('.package') === null) {
+                    timeout = setTimeout(function() {
+                        document.removeEventListener("mousemove", onMouseMove)
+                    }, 2000)
+                }
+                else {
+                    clearTimeout(timeout);
+                }
+
+                tetriomino.hidden = true;
+                let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+                tetriomino.hidden = false;
+
+                if (!elemBelow) return;
+
+                let droppableBelow = elemBelow.closest('.droppable');
+
+                if (currentDroppable != droppableBelow) {
+                    
+                    if (currentDroppable) {
+                   
+                    leaveDroppable(currentDroppable);
+                    }
+                    currentDroppable = droppableBelow;
+                    if (currentDroppable) {
+
+                    enterDroppable(currentDroppable);
+                    }
+                }
             }
         
             document.addEventListener("mousemove", onMouseMove);
         
             tetriomino.onmouseup = function() {
+                let left = Math.round(tetriomino.style.left.slice(0, -2)/25)*25;
+                tetriomino.style.left = left + "px";
+                let top = Math.round(tetriomino.style.top.slice(0, -2)/25)*25;
+                tetriomino.style.top = top + "px";
+
                 document.removeEventListener("mousemove", onMouseMove);
                 tetriomino.onmouseup = null;
+            }
+
+            function enterDroppable(elem) {
+                elem.style.background = 'pink';
+            }
+          
+              function leaveDroppable(elem) {
+                elem.style.background = '';
             }
         
             tetriomino.ondragstart = function() {
