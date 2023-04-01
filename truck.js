@@ -26,7 +26,7 @@ class Truck {
         truck.className = "truck";
         let count = document.getElementsByClassName("truck").length;
         truck.id = ++count;
-        truck.onclick = () => {this.openTruck(this.width,this.length)};
+        truck.onclick = () => {this.openTruck(this.width,this.length, truck.id)};
         this.docknumber = this.getDockNumber();
 
         trucks[this.docknumber].appendChild(truck);
@@ -56,24 +56,62 @@ class Truck {
         }
     }
 
-    openTruck(width, length) {
-        let interior = document.getElementById("interior");
-        interior.innerHTML = "";
+    openTruck(width, length, id) {
+        let interior = null;
 
-        let columns = "";
+        if(document.getElementById("interior" + id) == null) {
+            interior = document.createElement("div");
+            interior.className = "interiorcontainer";
+            interior.id = "interior" + id;
 
-        interior.style.height = length * 25 + "px";
+            let bigcontainer = document.getElementById("biginteriorcontainer");
+            let text = document.createElement("h3");
+            text.textContent = "Truck number " + id;
+            text.className = "title";
+            text.id = "title" + id;
+            bigcontainer.appendChild(text);
+            bigcontainer.appendChild(interior);
 
-        for (let i = 0; i < width; i++) {
-            columns += "auto ";
+            let columns = "";
+
+            interior.style.height = length * 25 + "px";
+            interior.style.width = width * 25 + "px";
+
+            for (let i = 0; i < width; i++) {
+                columns += "auto ";
+            }
+
+            interior.style.gridTemplateColumns = columns;
+
+            for (let i = 0; i < length*width; i++) {
+                let grid = document.createElement("div");
+                grid.className = "griditem droppable";
+                grid.id = i+1;
+                interior.appendChild(grid);
+            }
         }
+        interior = document.getElementById("interior" + id);
+        let interiors = document.getElementsByClassName("interiorcontainer");
 
-        interior.style.gridTemplateColumns = columns;
+        Array.from(interiors).forEach(element => { 
+            if (element == interior) {
+                element.style.visibility = "visible"
+            }
+            else {
+                element.style.visibility = "hidden"
+            }
+        });
+        let text = document.getElementById("title" + id);
+        let texts = document.getElementsByClassName("title");
 
-        for (let i = 0; i < length*width; i++) {
-            let grid = document.createElement("div");
-            grid.className = "griditem droppable";
-            interior.appendChild(grid);
-        }
+        Array.from(texts).forEach(element => { 
+            if (element == text) {
+                element.style.visibility = "visible"
+            }
+            else {
+                element.style.visibility = "hidden"
+            }
+        });
+
     }
 }

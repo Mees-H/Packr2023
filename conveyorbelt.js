@@ -15,19 +15,19 @@ class Conveyorbelt {
         
 
         // Package creation for testing purposes. Delete later
-        let newPackage = new Package(1, 1, 0);
+        let newPackage = new Package(1, 1, this.queue);
         this.queue.addPackageToQueue(newPackage);
-        let newPackage2 = new Package(2, 2, 0);
+        let newPackage2 = new Package(2, 2, this.queue);
         this.queue.addPackageToQueue(newPackage2);
-        let newPackage3 = new Package(3, 3, 0);
+        let newPackage3 = new Package(3, 3, this.queue);
         this.queue.addPackageToQueue(newPackage3);
-        let newPackage4 = new Package(4, 4, 0);
+        let newPackage4 = new Package(4, 4, this.queue);
         this.queue.addPackageToQueue(newPackage4);
-        let newPackage5 = new Package(5, 5, 0);
+        let newPackage5 = new Package(5, 5, this.queue);
         this.queue.addPackageToQueue(newPackage5);
-        let newPackage6 = new Package(6, 6, 0);
+        let newPackage6 = new Package(6, 6, this.queue);
         this.queue.addPackageToQueue(newPackage6);
-        let newPackage7 = new Package(7, 7, 0);
+        let newPackage7 = new Package(7, 7, this.queue);
         this.queue.addPackageToQueue(newPackage7);
     }
 

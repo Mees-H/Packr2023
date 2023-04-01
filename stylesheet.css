@@ -60,6 +60,7 @@
     padding-right: 11px;
 }
 
+
 .griditem {
     width: 25px;
     height: 25px;
@@ -136,12 +137,13 @@
 .package {
     position: absolute;
     animation-iteration-count: 1;
-    z-index: 2;
+    z-index: 10;
 }
 
 .avoid-clicks {
     pointer-events: none;
 }
+
 
 .package-drawsize-1 {
     height: 50px;
