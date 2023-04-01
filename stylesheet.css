@@ -154,8 +154,6 @@
 @keyframes move-0-3 {
     from {right: var(--package-spawn-point);}
     to {right: var(--package-position-3);}
-    /* from {right: 390px;}
-    to {right: 55px;} */
 }
 
 @keyframes move-0-2 {
