@@ -56,12 +56,16 @@
 
 .interiorcontainer {
     display: grid;
+    padding-top: 25px;
+    padding-right: 11px;
 }
+
 
 .griditem {
     width: 25px;
     height: 25px;
-    border: 1px solid black
+    border: 1px solid black;
+    z-index: 1;
 }
 
 #trucks {
@@ -133,7 +137,13 @@
 .package {
     position: absolute;
     animation-iteration-count: 1;
+    z-index: 10;
 }
+
+.avoid-clicks {
+    pointer-events: none;
+}
+
 
 .package-drawsize-1 {
     height: 50px;
