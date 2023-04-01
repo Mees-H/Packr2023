@@ -1,8 +1,8 @@
 :root {
-    --package-spawn-point: 65px;
-    --package-position-1: 150px;
-    --package-position-2: 250px;
-    --package-position-3: 350px;
+    --package-spawn-point: 385px;
+    --package-position-1: 300px;
+    --package-position-2: 200px;
+    --package-position-3: 100px;
 }
 
 .form-group {
@@ -49,9 +49,19 @@
     bottom: 10px;
 }
 
-#truck {
+.truck {
     height: 200px;
     width: 200px;
+}
+
+.interiorcontainer {
+    display: grid;
+}
+
+.griditem {
+    width: 25px;
+    height: 25px;
+    border: 1px solid black
 }
 
 #trucks {
@@ -112,6 +122,7 @@
 .btn-secondary {
     width:75px;
     height:50px;
+    z-index: 1;
 }
 
 .left-dock-button {
@@ -141,26 +152,29 @@
 }
 
 @keyframes move-0-3 {
-    from {left: var(--package-spawn-point);}
-    to {left: var(--package-position-3);}
+    from {right: var(--package-spawn-point);}
+    to {right: var(--package-position-3);}
+    /* from {right: 390px;}
+    to {right: 55px;} */
 }
 
 @keyframes move-0-2 {
-    from {left: var(--package-spawn-point);}
-    to {left: var(--package-position-2);}
+    from {right: var(--package-spawn-point);}
+    to {right: var(--package-position-2);}
 }
 
 @keyframes move-0-1 {
-    from {left: var(--package-spawn-point);}
-    to {left: var(--package-position-1);}
+    from {right: var(--package-spawn-point);}
+    to {right: var(--package-position-1);}
 }
 
 @keyframes move-1-2 {
-    from {left: var(--package-position-1);}
-    to {left: var(--package-position-2);}
+    from {right: var(--package-position-1);}
+    to {right: var(--package-position-2);}
 }
 
 @keyframes move-2-3 {
-    from {left: var(--package-position-2);}
-    to {left: var(--package-position-3);}
+    from {right: var(--package-position-2);}
+    to {right: var(--package-position-3);}
 }
+

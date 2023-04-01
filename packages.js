@@ -57,6 +57,40 @@ class Package {
         // package.className = "rotateimg180";
         thisPackage.src = this.image;
         
+        this.dragImage(thisPackage);
+
         tube.appendChild(thisPackage);
+    }
+    
+    dragImage(image) {
+        let tetriomino = image;
+        tetriomino.onmousedown = function(event) {
+
+            let shiftX = event.clientX - tetriomino.getBoundingClientRect().left;
+            let shiftY = event.clientY - tetriomino.getBoundingClientRect().top;
+
+            
+            function moveAt(pageX,pageY) {
+                tetriomino.style.left = pageX - shiftX - 250 + "px";
+                tetriomino.style.top = pageY - shiftY + "px";
+            }
+        
+            moveAt(event.pageX, event.pageY);
+        
+            function onMouseMove(event) {
+                moveAt(event.pageX, event.pageY);
+            }
+        
+            document.addEventListener("mousemove", onMouseMove);
+        
+            tetriomino.onmouseup = function() {
+                document.removeEventListener("mousemove", onMouseMove);
+                tetriomino.onmouseup = null;
+            }
+        
+            tetriomino.ondragstart = function() {
+                return false;
+            }
+        };
     }
 }
