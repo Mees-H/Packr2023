@@ -1,3 +1,10 @@
+:root {
+    --package-spawn-point: 65px;
+    --package-position-1: 150px;
+    --package-position-2: 250px;
+    --package-position-3: 350px;
+}
+
 .form-group {
     width: 200px;
     padding: 10px;
@@ -54,7 +61,7 @@
     flex-direction: column;
 }
 
-#conveyorbelts {
+.conveyorbelts {
     position: absolute;
     left: 250px;
     width:500px;
@@ -62,7 +69,7 @@
     flex-direction: column;
 }
 
-#conveyorbeltRow {
+.conveyorbeltRow {
     display: flex;
     flex-direction: row;
 
@@ -107,12 +114,13 @@
     height:50px;
 }
 
+.left-dock-button {
+    left: 30px;
+    margin-right: 30px;
+}
+
 .package {
     position: absolute;
-    /* top: 70px; */
-    /* height: 50px;
-    width: 50px; */
-    /* animation: move-0-3 5s linear forwards; */
     animation-iteration-count: 1;
 }
 
@@ -133,26 +141,26 @@
 }
 
 @keyframes move-0-3 {
-    from {left: 65px;}
-    to {left: 400px;}
+    from {left: var(--package-spawn-point);}
+    to {left: var(--package-position-3);}
 }
 
 @keyframes move-0-2 {
-    from {left: 65px;}
-    to {left: 300px;}
+    from {left: var(--package-spawn-point);}
+    to {left: var(--package-position-2);}
 }
 
 @keyframes move-0-1 {
-    from {left: 65px;}
-    to {left: 200px;}
+    from {left: var(--package-spawn-point);}
+    to {left: var(--package-position-1);}
 }
 
 @keyframes move-1-2 {
-    from {left: 200px;}
-    to {left: 300px;}
+    from {left: var(--package-position-1);}
+    to {left: var(--package-position-2);}
 }
 
 @keyframes move-2-3 {
-    from {left: 300px;}
-    to {left: 400px;}
+    from {left: var(--package-position-2);}
+    to {left: var(--package-position-3);}
 }
