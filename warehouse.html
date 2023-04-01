@@ -7,6 +7,7 @@
     <title>Packr</title>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="docks.js" defer></script>
     <script src="form.js" defer></script>
     <script src="conveyorbelt.js" defer></script>
     <script src="conveyorbeltQueue.js" defer></script>
@@ -21,31 +22,29 @@
     <div id="container">
         <div id="forms">
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                    <input type="radio" name="options" id="option1" class="button" autocomplete="off" checked>Dock 1
+                <label class="btn btn-secondary active left-dock-button" id="dockbutton1">
+                    <input type="radio" name="options" id="option1" class="button dockbutton" autocomplete="off" checked>Dock 1
                 </label>
-                <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="option2" class="button" autocomplete="off">Dock 2
+                <label class="btn btn-secondary" id="dockbutton2">
+                    <input type="radio" name="options" id="option2" class="button dockbutton" autocomplete="off">Dock 2
                 </label>
             </div>
             <form id="form"></form>
             <div id="conveyerbeltform"></div>    
         </div>
-        <div id="conveyorbelts">
-
-
-        </div>
-        <div class="truckcontainer">
-            <div class="trucks" id="trucks">
-
+        <div id="dock1">
+            <div class="conveyorbelts" id="conveyorbelts1"></div>
+            <div class="truckcontainer">
+                <div class="trucks" id="trucks"></div>
             </div>
-            <div class="trucks" id="trucks">
-
+        </div>
+        <div id="dock2">
+            <div class="conveyorbelts" id="conveyorbelts2"></div>
+            <div class="truckcontainer">
+                <div class="trucks" id="trucks"></div>
             </div>
         </div>
         <div class="interiorcontainer" id="interior">
-
-        </div>
     </div>
 </body>
 </html>

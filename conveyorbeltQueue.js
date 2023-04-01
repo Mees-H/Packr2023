@@ -54,9 +54,6 @@ class ConveyorbeltQueue {
         button.id = "conveyorbeltQueueNumber";
         formgroup.appendChild(button);
 
-        // button.onclick = () => {
-        //     this.addConveyorbelt();
-        // };
         form.appendChild(formgroup);
     }
 

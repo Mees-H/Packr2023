@@ -1,9 +1,8 @@
+let docks = new Docks();
+
 let form = new Form();
 form.resetForm();
 
-let conveyorbelts = new Conveyorbelt();
-// conveyorbelts.createConveyorbeltButton()
-conveyorbelts.addConveyorbelt();
-// let queue = new ConveyorbeltQueue();
-// let newPackage = new Package();
-// queue.addPackageToQueue(newPackage);
+let conveyorbelts = new Conveyorbelt(docks);
+conveyorbelts.addConveyorbelt(1);
+conveyorbelts.addConveyorbelt(2);

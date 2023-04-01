@@ -1,16 +1,20 @@
 class Conveyorbelt {
 
+    docks;
     queue;
     numberOfConveyorbelts;
     conveyorbeltDictionary;
     
-    constructor() {
+    constructor(docks) {
+        this.docks = docks;
         this.conveyorbeltDictionary = [];
         this.numberOfConveyorbelts = 0;
         this.createConveyorbeltButton();
         
         this.queue = new ConveyorbeltQueue();
         
+
+        // Package creation for testing purposes. Delete later
         let newPackage = new Package(1, 1, 0);
         this.queue.addPackageToQueue(newPackage);
         let newPackage2 = new Package(2, 2, 0);
@@ -27,11 +31,18 @@ class Conveyorbelt {
         this.queue.addPackageToQueue(newPackage7);
     }
 
-    addConveyorbelt() {
+    addConveyorbelt(givenDocknumber) {
         this.numberOfConveyorbelts +=1;
-        let conveyorbelts = document.getElementById("conveyorbelts");
+        if (givenDocknumber) {
+            this.placeInThisDock = givenDocknumber;
+        }
+        else {
+            this.placeInThisDock = this.docks.getDockNumber();
+        }
+        let conveyorbelts = document.getElementById("conveyorbelts"+this.placeInThisDock);
         let conveyorbeltRow = document.createElement("div");
-        conveyorbeltRow.id = "conveyorbeltRow"; 
+        conveyorbeltRow.id = "conveyorbeltRow"+this.numberOfConveyorbelts; 
+        conveyorbeltRow.className = "conveyorbeltRow";
 
 
         let tube = document.createElement("img"); 
@@ -75,48 +86,56 @@ class Conveyorbelt {
     }
 
     getHightForPackageOnConveyorbelt(conveyerbeltNumber) {
-        let height = 70 + ((conveyerbeltNumber - 1) * 200);
+        let docknumber = this.docks.getDockNumber()
+        let conveyorbelts = document.querySelector('#conveyorbelts'+docknumber);
+        let activeConveyorbelts = conveyorbelts.getElementsByClassName("conveyorbeltRow");
+
+        let conveyorbeltHeightNumber = 0;
+        for (let i = 0; i < activeConveyorbelts.length; i++) {
+            let thisConveyorbeltNumber = activeConveyorbelts[i].id.replace('conveyorbeltRow','');
+            if (thisConveyorbeltNumber == conveyerbeltNumber) {
+                conveyorbeltHeightNumber = i;
+                break;
+            }
+        }
+        let height = 70 + ((conveyorbeltHeightNumber) * 200);
         return height;
     }
 
     movePackageOnConveyorbelt(movingPackage, from, to) {
-
+        // TODO implement this after packages are placed in trucks
     }
 
     addPackageOnConveyorbelt(thePackage, conveyorbeltNumber) {
         if (!this.conveyorbeltDictionary[conveyorbeltNumber] || this.conveyorbeltDictionary[conveyorbeltNumber].length < 3) {
             this.queue.removePackageFromQueue();
             if (this.conveyorbeltDictionary[conveyorbeltNumber]) {
-                //not the first package
+                // Not the first package
                 this.conveyorbeltDictionary[conveyorbeltNumber].push(thePackage);
             }
             else {
-                //first package
+                // First package
                 this.conveyorbeltDictionary[conveyorbeltNumber] = [thePackage];
             }
             this.addAnimationToPackage(thePackage, conveyorbeltNumber);
         }
         else {
-            // error message because of full conveyor belt
-            console.log("error: conveyor belt is full");
+            console.log("Error: The selected conveyorbelt is full");
         }
     }
 
     addAnimationToPackage(thePackage, conveyorbeltNumber) {
-        thePackage.drawImage(this.getHightForPackageOnConveyorbelt(conveyorbeltNumber));
+        thePackage.drawImage(this.getHightForPackageOnConveyorbelt(conveyorbeltNumber), conveyorbeltNumber);
 
         let packagesOnConveyorbelt = this.conveyorbeltDictionary[conveyorbeltNumber].length;
         switch(packagesOnConveyorbelt){
             case 1:
-                //animation move to place 3
-                document.getElementById("package"+thePackage.id).style.animation = "move-0-3 5.6s linear forwards";
+                document.getElementById("package"+thePackage.id).style.animation = "move-0-3 7s linear forwards";
                 break;
             case 2:
-                //animation move to place 2
-                document.getElementById("package"+thePackage.id).style.animation = "move-0-2 4s linear forwards";
+                document.getElementById("package"+thePackage.id).style.animation = "move-0-2 4.8s linear forwards";
                 break;
             case 3:
-                //animation move to place 1
                 document.getElementById("package"+thePackage.id).style.animation = "move-0-1 2.3s linear forwards";
                 break;
         }

@@ -47,8 +47,8 @@ class Package {
         }
     }
     
-    drawImage(height) {
-        let tube = document.getElementById("conveyorbeltRow");
+    drawImage(height, conveyorbeltNumber) {
+        let tube = document.getElementById("conveyorbeltRow"+conveyorbeltNumber);
 
         let thisPackage = document.createElement("img"); 
         thisPackage.id = "package"+this.id;
