@@ -30,7 +30,7 @@ class Package {
             case 3:
                 this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Tetromino_T_Up.svg/113px-Tetromino_T_Up.svg.png";
                 this.drawsize = "package-drawsize-3";
-                this.color = "pink";
+                this.color = "magenta";
                 break;
             case 4:
                 this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Tetromino_J_Up.svg/75px-Tetromino_J_Up.svg.png";
@@ -45,7 +45,7 @@ class Package {
             case 6:
                 this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Tetromino_S_Horizontal.svg/113px-Tetromino_S_Horizontal.svg.png";
                 this.drawsize = "package-drawsize-3";
-                this.color = "lightgreen";
+                this.color = "lime";
                 break;
             case 7:
                 this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Tetromino_Z_Horizontal.svg/113px-Tetromino_Z_Horizontal.svg.png";
@@ -129,7 +129,39 @@ class Package {
                 let grids = document.getElementsByClassName('griditem');
                 Array.from(grids).forEach(element => { 
                     if(element.classList.contains("occupied") && element.classList.contains("checked")) {
-                        occupied = true;
+                        switch (object.shape) {
+                            case 1:
+                                
+                                break;
+                            case 2:
+                                occupied = true;
+                                break;
+                            case 3:
+                                if (counter != 3 && counter != 5) {
+                                    occupied = true;
+                                }
+                                break;
+                            case 4:
+                                if (counter != 0 && counter != 2) {
+                                    occupied = true;
+                                }
+                                break;
+                            case 5:
+                                if (counter != 1 && counter != 3) {
+                                    occupied = true;
+                                }
+                                break;
+                            case 6:
+                                if (counter != 0 && counter != 5) {
+                                    occupied = true;
+                                }
+                                break;
+                            case 7:
+                                if (counter != 2 && counter != 3) {
+                                    occupied = true;
+                                }
+                                break;
+                        }
                     }
                     if (element.classList.contains("checked")) {
                         counter++;
@@ -137,7 +169,7 @@ class Package {
                 });
 
                 if (occupied || counter < 4) {
-                    alert("not valid")
+                    alert("You cannot place a package here!")
                     let queue = object.queue;
                     queue.addPackageToQueue(object);
                     this.remove();
@@ -168,15 +200,79 @@ class Package {
                     tetriomino.style.left = Xvar*-25 + "px";
                     tetriomino.style.top = Yvar*-25 + "px";
 
-                    currentDroppable.appendChild(tetriomino);
+                    tetriomino.remove();
 
                     let grids = document.getElementsByClassName('griditem');
                     Array.from(grids).forEach(element => { 
+                        let checks = document.getElementsByClassName("checked").length;
                         if(element.classList.contains("checked")) {
+                            switch (object.shape) {
+                                case 1:
+                                    
+                                    break;
+                                case 2:
+                                    element.classList.add("occupied");
+                                    element.style.backgroundColor = object.color;;
+                                    break;
+                                case 3:
+                                    if (checks != 1 && checks != 3) {
+                                        element.classList.add("occupied");
+                                        element.style.backgroundColor = object.color;
+                                    }
+                                    else {
+                                        if (!element.classList.contains("occupied")) {
+                                            element.style.backgroundColor = "white";
+                                        }
+                                    }
+                                    break;
+                                case 4:
+                                    if (checks != 6 && checks != 4) {
+                                        element.classList.add("occupied");
+                                        element.style.backgroundColor = object.color;
+                                    }
+                                    else {
+                                        if (!element.classList.contains("occupied")) {
+                                            element.style.backgroundColor = "white";
+                                        }
+                                    }
+                                    break;
+                                case 5:
+                                    if (checks != 5 && checks != 3) {
+                                        element.classList.add("occupied");
+                                        element.style.backgroundColor = object.color;
+                                    }
+                                    else {
+                                        if (!element.classList.contains("occupied")) {
+                                            element.style.backgroundColor = "white";
+                                        }
+                                    }
+                                    break;
+                                case 6:
+                                    if (checks != 6 && checks != 1) {
+                                        element.classList.add("occupied");
+                                        element.style.backgroundColor = object.color;
+                                    }
+                                    else {
+                                        if (!element.classList.contains("occupied")) {
+                                            element.style.backgroundColor = "white";
+                                        }
+                                    }
+                                    break;
+                                case 7:
+                                    if (checks != 4 && checks != 3) {
+                                        element.classList.add("occupied");
+                                        element.style.backgroundColor = object.color;
+                                    }
+                                    else {
+                                        if (!element.classList.contains("occupied")) {
+                                            element.style.backgroundColor = "white";
+                                        }
+                                    }
+                                    break;
+                            }
                             element.classList.remove("checked");
-                            element.classList.add("occupied");
-                            element.style.backgroundColor = object.color;
                         }
+
                     });
                     tetriomino.style.position = "relative";
 
@@ -207,12 +303,17 @@ class Package {
                         rect1.bottom < rect2.top + 12.5|| 
                         rect1.top > rect2.bottom - 12.5) {
 
+                        if (!element.classList.contains("occupied")) {
+                            element.style.backgroundColor = "white";
+                        }
                         element.classList.remove("checked");
-                        element.style.backgroundColor = "white";
                     }
                     else {
+
+                        if (!element.classList.contains("occupied")) {
+                            element.style.backgroundColor = "pink";
+                        }
                         element.classList.add("checked");
-                        element.style.backgroundColor = "pink";
                     }
                     
                 });
