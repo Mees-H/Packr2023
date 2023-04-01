@@ -56,7 +56,8 @@
 .griditem {
     width: 25px;
     height: 25px;
-    border: 1px solid black
+    border: 1px solid black;
+    z-index: 1;
 }
 
 #trucks {
@@ -128,6 +129,10 @@
     /* animation: move-0-3 5s linear forwards; */
     animation-iteration-count: 1;
     z-index: 2;
+}
+
+.avoid-clicks {
+    pointer-events: none;
 }
 
 .package-drawsize-1 {
