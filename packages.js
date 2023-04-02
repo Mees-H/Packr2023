@@ -74,8 +74,6 @@ class Package {
     dragImage(image, object) {
         let tetriomino = image;
 
-        //this.shape bepaalt de vorm
-
         tetriomino.onmousedown = function(event) {
 
             let shiftX = event.clientX - tetriomino.getBoundingClientRect().left;
@@ -127,50 +125,67 @@ class Package {
             tetriomino.onmouseup = function() {
 
                 let occupied = false;
+                let counter_max = 0;
                 let counter = 0;
                 let grids = document.getElementsByClassName('griditem');
                 Array.from(grids).forEach(element => { 
-                    if(element.classList.contains("occupied") && element.classList.contains("checked")) {
                         switch (object.shape) {
                             case 1:
-                                
+                                if(element.classList.contains("occupied") && element.classList.contains("checked")) 
+                                    if (counter != 0 && counter != 1 && counter != 2 && counter != 3) {
+                                        occupied = true;
+                                    }
+                                counter_max = 8;
                                 break;
                             case 2:
-                                occupied = true;
+                                if(element.classList.contains("occupied") && element.classList.contains("checked")) 
+                                    occupied = true;
+                                counter_max = 4;
                                 break;
                             case 3:
-                                if (counter != 3 && counter != 5) {
-                                    occupied = true;
-                                }
+                                if(element.classList.contains("occupied") && element.classList.contains("checked")) 
+                                    if (counter != 3 && counter != 5) {
+                                        occupied = true;
+                                    }
+                                counter_max = 6;
                                 break;
                             case 4:
-                                if (counter != 0 && counter != 2) {
-                                    occupied = true;
-                                }
+                                if(element.classList.contains("occupied") && element.classList.contains("checked")) 
+                                    if (counter != 0 && counter != 2) {
+                                        occupied = true;
+                                    }
+                                counter_max = 6;
                                 break;
                             case 5:
-                                if (counter != 1 && counter != 3) {
-                                    occupied = true;
-                                }
+                                if(element.classList.contains("occupied") && element.classList.contains("checked")) 
+                                    if (counter != 1 && counter != 3) {
+                                        occupied = true;
+                                    }
+                                counter_max = 6;
                                 break;
                             case 6:
-                                if (counter != 0 && counter != 5) {
-                                    occupied = true;
-                                }
+                                if(element.classList.contains("occupied") && element.classList.contains("checked")) 
+                                    if (counter != 0 && counter != 5) {
+                                        occupied = true;
+                                    }
+                                counter_max = 6;
                                 break;
                             case 7:
-                                if (counter != 2 && counter != 3) {
-                                    occupied = true;
-                                }
+                                if(element.classList.contains("occupied") && element.classList.contains("checked")) 
+                                    if (counter != 2 && counter != 3) {
+                                        occupied = true;
+                                    }
+                                counter_max = 6;
                                 break;
                         }
-                    }
-                    if (element.classList.contains("checked")) {
-                        counter++;
-                    }
+                        if (element.classList.contains("checked")) {
+                            counter++;
+                        }
                 });
 
-                if (occupied || counter < 4) {
+                console.log(counter);
+                console.log(counter_max);
+                if (occupied || counter < counter_max) {
                     alert("You cannot place a package here!");
                     object.conveyorbelt.deletePackageFromConveyorbelt(object);
                     let queue = object.queue;
@@ -192,6 +207,10 @@ class Package {
                         Xvar = 2;
                     }
 
+                    else if (shiftX > 75 && shiftX <= 100) {
+                        Xvar = 3;
+                    }
+
                     if (shiftY > 25 && shiftY <= 50) {
                         Yvar = 1;
                     }
@@ -211,11 +230,19 @@ class Package {
                         if(element.classList.contains("checked")) {
                             switch (object.shape) {
                                 case 1:
-                                    
+                                    if (checks != 5 && checks != 6 && checks != 7 && checks != 8) {
+                                        element.classList.add("occupied");
+                                        element.style.backgroundColor = object.color;
+                                    }
+                                    else {
+                                        if (!element.classList.contains("occupied")) {
+                                            element.style.backgroundColor = "white";
+                                        }
+                                    }
                                     break;
                                 case 2:
                                     element.classList.add("occupied");
-                                    element.style.backgroundColor = object.color;;
+                                    element.style.backgroundColor = object.color;
                                     break;
                                 case 3:
                                     if (checks != 1 && checks != 3) {
