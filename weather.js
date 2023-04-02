@@ -1,5 +1,8 @@
 class Weather {
     location;
+    temperature;
+    conditionText;
+    windspeed;
 
     constructor(location) {
         this.location = location;
@@ -9,7 +12,7 @@ class Weather {
     
     createChangeWeatherForm() {
         let formgroup = document.createElement("div");
-        formgroup.className = "form-group small-form-group ml-2 mt-2 mb-2 border border-dark rounded";
+        formgroup.className = "forms small-form-group ml-2 mt-2 mb-2 border border-dark rounded";
         formgroup.id = "size";
 
         let label = document.createElement("label");
@@ -45,19 +48,28 @@ class Weather {
     }
 
     async getWeatherFromApi() {
-        let response = await fetch("http://api.weatherapi.com/v1/current.json?key=8a52679ad6f243a98e2144608230104&q="+this.location+"&aqi=no")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                this.setCurrentWeather(data.location.name, data.current.temp_c, data.current.condition.text, data.current.wind_kph);
-            });
+        try {
+            await fetch("http://api.weatherapi.com/v1/current.json?key=8a52679ad6f243a98e2144608230104&q="+this.location+"&aqi=no")
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    this.setCurrentWeather(data.location.name, data.current.temp_c, data.current.condition.text, data.current.wind_kph);
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
     setCurrentWeather(location, temperature, conditionText, windspeed) {
+        this.temperature = temperature;
+        this.conditionText = conditionText;
+        this.windspeed = windspeed;
+
         let form = document.getElementById("weather");
 
         let formgroup = document.createElement("div");
-        formgroup.className = "form-group small-form-group ml-2 mt-2 mb-2 border border-dark rounded";
+        formgroup.className = "forms small-form-group ml-2 mt-2 mb-2 border border-dark rounded";
         formgroup.id = "size";
 
         let title = document.createElement("h5");
@@ -73,5 +85,38 @@ class Weather {
         formgroup.appendChild(button);
 
         form.appendChild(formgroup);
+        
+        this.refreshAllCanCarDrive();
+    }
+
+    refreshAllCanCarDrive() {
+        let canDriveArray = document.getElementsByClassName("can-truck-drive");
+        for (let i = 0; i < canDriveArray.length; i++) {
+            if (canDriveArray[i].className.includes("type-Fragile")) {
+                if (this.conditionText.includes("rain") || this.conditionText.includes("drizzle")){
+                    canDriveArray[i].textContent = "Cant drive because of the rain.";
+                }
+                else {
+                    canDriveArray[i].textContent = "This truck can drive.";
+                }
+            }
+            if (canDriveArray[i].className.includes("type-Cold")) {
+                if (this.temperature > 35){
+                    canDriveArray[i].textContent = "Its too warm to drive.";
+                }
+                else {
+                    canDriveArray[i].textContent = "This truck can drive.";
+                }
+            }
+            if (canDriveArray[i].className.includes("type-Pallets")) {
+                console.log("pallets");
+                if (this.windspeed > 20){
+                    canDriveArray[i].textContent = "Its too windy to drive.";
+                }
+                else {
+                    canDriveArray[i].textContent = "This truck can drive.";
+                }
+            }
+        }
     }
 }

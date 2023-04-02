@@ -183,8 +183,6 @@ class Package {
                         }
                 });
 
-                console.log(counter);
-                console.log(counter_max);
                 if (occupied || counter < counter_max) {
                     alert("You cannot place a package here!");
                     object.conveyorbelt.deletePackageFromConveyorbelt(object);
@@ -221,9 +219,12 @@ class Package {
 
                     tetriomino.style.left = Xvar*-25 + "px";
                     tetriomino.style.top = Yvar*-25 + "px";
+                    
+                    object.conveyorbelt.deletePackageFromConveyorbelt(object);
 
                     tetriomino.remove();
 
+                    
                     let grids = document.getElementsByClassName('griditem');
                     Array.from(grids).forEach(element => { 
                         let checks = document.getElementsByClassName("checked").length;

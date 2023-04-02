@@ -8,8 +8,10 @@ class Form {
     type;
     spans;
     error;
+    weather;
 
-    constructor() {
+    constructor(weather) {
+        this.weather = weather;
         this.form = document.getElementById("form");
         this.error = document.createElement("p");
         this.form.appendChild(this.error);
@@ -105,6 +107,7 @@ class Form {
         input.setAttribute("type", "number");
         input.className = "form-control";
         input.id = "length";
+        input.value = 5;
         input.setAttribute("placeholder", "Length...")
 
         formgroup.appendChild(label);
@@ -123,6 +126,7 @@ class Form {
         input.setAttribute("type", "number");
         input.className = "form-control";
         input.id = "width";
+        input.value = 5;
         input.setAttribute("placeholder", "Width...")
 
         formgroup.appendChild(label);
@@ -141,6 +145,7 @@ class Form {
         input.setAttribute("type", "number");
         input.className = "form-control";
         input.id = "interval";
+        input.value = 1;
         input.setAttribute("placeholder", "Interval...")
 
         formgroup.appendChild(label);
@@ -245,6 +250,7 @@ class Form {
     createTruck() {
         let truck = new Truck(this.length, this.width, this.interval, this.type);
         truck.addTruck();
+        this.weather.refreshAllCanCarDrive();
     }
 
     validate() {

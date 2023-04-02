@@ -54,12 +54,15 @@
     width: 200px;
 }
 
+.can-truck-drive {
+    margin-bottom: -25px;
+}
+
 .interiorcontainer {
     display: grid;
     padding-top: 25px;
     padding-right: 11px;
 }
-
 
 .griditem {
     width: 25px;
@@ -110,6 +113,13 @@
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
+}
+
+.forms {
+    width: 200px;
+    padding: 10px;
+    min-height: 50px;
+    position: relative;
 }
 
 .truckcontainer {

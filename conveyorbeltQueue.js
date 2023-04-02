@@ -58,7 +58,7 @@ class ConveyorbeltQueue {
         let form = document.getElementById("conveyerbeltform");
 
         let formgroup = document.createElement("div");
-        formgroup.className = "form-group small-form-group ml-2 mt-2 mb-2 border border-dark rounded";
+        formgroup.className = "forms small-form-group ml-2 mt-2 mb-2 border border-dark rounded";
         formgroup.id = "size";
 
         let title = document.createElement("h5");

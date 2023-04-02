@@ -28,6 +28,12 @@ class Truck {
         truck.id = ++count;
         truck.onclick = () => {this.openTruck(this.width,this.length, truck.id)};
         this.docknumber = this.getDockNumber();
+        
+        let canTruckDrive = document.createElement("h5");
+        canTruckDrive.textContent = "This truck can drive.";
+        canTruckDrive.className = "can-truck-drive type-" + this.type;
+        canTruckDrive.id = "cantruckdrive"+truck.id;
+        trucks[this.docknumber].appendChild(canTruckDrive);
 
         trucks[this.docknumber].appendChild(truck);
     }
