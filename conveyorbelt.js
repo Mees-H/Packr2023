@@ -11,7 +11,7 @@ class Conveyorbelt {
         this.numberOfConveyorbelts = 0;
         this.createConveyorbeltButton();
         
-        this.queue = new ConveyorbeltQueue();
+        this.queue = new ConveyorbeltQueue(this);
     }
 
     addConveyorbelt(givenDocknumber) {

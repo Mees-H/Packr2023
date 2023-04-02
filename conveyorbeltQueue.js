@@ -1,9 +1,11 @@
 class ConveyorbeltQueue {
 
+    conveyorbelt;
     packages;
     latestID;
     
-    constructor() {
+    constructor(conveyorbelt) {
+        this.conveyorbelt = conveyorbelt;
         this.latestID = 0;
         this.packages = [];
         this.createConveyorbeltQueue();
@@ -20,7 +22,7 @@ class ConveyorbeltQueue {
             shape = this.getRandomShape();
         }
         this.latestID++;
-        let newPackage = new Package(this.latestID, shape, this.queue, this);
+        let newPackage = new Package(this.latestID, shape, this, this.conveyorbelt);
         this.addPackageToQueue(newPackage);
     }
 
