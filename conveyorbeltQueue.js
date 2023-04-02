@@ -1,10 +1,27 @@
 class ConveyorbeltQueue {
 
     packages;
+    latestID;
     
     constructor() {
+        this.latestID = 0;
         this.packages = [];
         this.createConveyorbeltQueue();
+        this.autoGeneratePackages();
+        this.generatePackageBatch();
+    }
+
+    createPackage(chosenShape) {
+        let shape
+        if (chosenShape) {
+            shape = chosenShape;
+        }
+        else {
+            shape = this.getRandomShape();
+        }
+        this.latestID++;
+        let newPackage = new Package(this.latestID, shape, this.queue, this);
+        this.addPackageToQueue(newPackage);
     }
 
     addPackageToQueue(newPackage) {
@@ -55,6 +72,27 @@ class ConveyorbeltQueue {
         formgroup.appendChild(button);
 
         form.appendChild(formgroup);
+    }
+
+    getRandomShape() {
+        return Math.floor(Math.random() * 7) + 1;
+    }
+
+    autoGeneratePackages(){
+        this.start = function() {
+            var self = this;
+            this.timer = setInterval(function() {
+                self.createPackage();
+            }, 5000)
+        }
+        this.start();
+    }
+
+    generatePackageBatch() {
+        let numberOfGeneratedPackages = 5;
+        for(var i = 0; i < numberOfGeneratedPackages; i++){
+            this.createPackage(this.getRandomShape());
+        }
     }
 
 }
