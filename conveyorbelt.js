@@ -15,19 +15,19 @@ class Conveyorbelt {
         
 
         // Package creation for testing purposes. Delete later
-        let newPackage = new Package(1, 1, this.queue);
+        let newPackage = new Package(1, 1, this.queue, this);
         this.queue.addPackageToQueue(newPackage);
-        let newPackage2 = new Package(2, 2, this.queue);
+        let newPackage2 = new Package(2, 2, this.queue, this);
         this.queue.addPackageToQueue(newPackage2);
-        let newPackage3 = new Package(3, 3, this.queue);
+        let newPackage3 = new Package(3, 3, this.queue, this);
         this.queue.addPackageToQueue(newPackage3);
-        let newPackage4 = new Package(4, 4, this.queue);
+        let newPackage4 = new Package(4, 4, this.queue, this);
         this.queue.addPackageToQueue(newPackage4);
-        let newPackage5 = new Package(5, 5, this.queue);
+        let newPackage5 = new Package(5, 5, this.queue, this);
         this.queue.addPackageToQueue(newPackage5);
-        let newPackage6 = new Package(6, 6, this.queue);
+        let newPackage6 = new Package(6, 6, this.queue, this);
         this.queue.addPackageToQueue(newPackage6);
-        let newPackage7 = new Package(7, 7, this.queue);
+        let newPackage7 = new Package(7, 7, this.queue, this);
         this.queue.addPackageToQueue(newPackage7);
     }
 
@@ -102,8 +102,29 @@ class Conveyorbelt {
         return height;
     }
 
-    movePackageOnConveyorbelt(movingPackage, from, to) {
-        // TODO implement this after packages are placed in trucks
+    deletePackageFromConveyorbelt(deletedPackage) {
+        let theDeletedPackage = document.getElementById("package"+deletedPackage.id)
+        let rownumber = theDeletedPackage.parentElement.id.replace("conveyorbeltRow", "")
+        let packagesInThisConveyorbelt = this.conveyorbeltDictionary[rownumber];
+        let packageDeleted = false;
+        let deleteThisPackage = -1;
+        for (let i = 0; i < packagesInThisConveyorbelt.length; i++) {
+            if (packageDeleted) {
+                let reverseI = 3 - i;
+                let moveFromTo = (reverseI)+"-"+(reverseI+1);
+                let packageElement = document.getElementById("package"+packagesInThisConveyorbelt[i].id);
+                packageElement.style.animation = "move-"+moveFromTo+" 2s linear forwards";
+            }
+            else {
+                if (deletedPackage.id == packagesInThisConveyorbelt[i].id) {
+                    deleteThisPackage = i;
+                    packageDeleted = true;
+                }
+            }
+        }
+        if (deleteThisPackage > -1) {
+            packagesInThisConveyorbelt.splice(deleteThisPackage, 1)
+        }
     }
 
     addPackageOnConveyorbelt(thePackage, conveyorbeltNumber) {

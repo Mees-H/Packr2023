@@ -4,14 +4,16 @@ class Package {
     shape;
     drawsize;
     queue;
+    conveyorbelt;
     image;
     color;
     
 
-    constructor(id, shape, queue) {
+    constructor(id, shape, queue, conveyorbelt) {
         this.id = id;
         this.shape = shape;
         this.queue = queue;
+        this.conveyorbelt = conveyorbelt
         this.setImage();
     }
 
@@ -169,7 +171,8 @@ class Package {
                 });
 
                 if (occupied || counter < 4) {
-                    alert("You cannot place a package here!")
+                    alert("You cannot place a package here!");
+                    object.conveyorbelt.deletePackageFromConveyorbelt(object);
                     let queue = object.queue;
                     queue.addPackageToQueue(object);
                     this.remove();
