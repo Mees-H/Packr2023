@@ -76,6 +76,7 @@ class Package {
 
         tetriomino.onmousedown = function(event) {
 
+            tetriomino.style.cursor = "move";
             let shiftX = event.clientX - tetriomino.getBoundingClientRect().left;
             let shiftY = 0;
             if (tetriomino.classList.contains("package-drawsize-2")) {
