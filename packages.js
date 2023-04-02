@@ -105,20 +105,7 @@ class Package {
 
                 if (!elemBelow) return;
 
-                let droppableBelow = elemBelow.closest('.droppable');
-
-                if (currentDroppable != droppableBelow) {
-                    
-                    if (currentDroppable) {
-                   
-                    leaveDroppable(currentDroppable);
-                    }
-                    currentDroppable = droppableBelow;
-                    if (currentDroppable) {
-
-                    enterDroppable(currentDroppable);
-                    }
-                }
+                currentDroppable = elemBelow.closest('.droppable');
             }
         
             document.addEventListener("mousemove", onMouseMove);
@@ -314,15 +301,6 @@ class Package {
                 document.removeEventListener("mousemove", onMouseMove);
                 tetriomino.onmouseup = null;
                 
-            }
-
-
-            function enterDroppable(elem) {
-                //
-            }
-          
-            function leaveDroppable(elem) {
-                //
             }
 
             function checkOverlaps(tetriomino) {

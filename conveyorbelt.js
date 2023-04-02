@@ -114,11 +114,9 @@ class Conveyorbelt {
         if (!this.conveyorbeltDictionary[conveyorbeltNumber] || this.conveyorbeltDictionary[conveyorbeltNumber].length < 3) {
             this.queue.removePackageFromQueue();
             if (this.conveyorbeltDictionary[conveyorbeltNumber]) {
-                // Not the first package
                 this.conveyorbeltDictionary[conveyorbeltNumber].push(thePackage);
             }
             else {
-                // First package
                 this.conveyorbeltDictionary[conveyorbeltNumber] = [thePackage];
             }
             this.addAnimationToPackage(thePackage, conveyorbeltNumber);
@@ -134,13 +132,13 @@ class Conveyorbelt {
         let packagesOnConveyorbelt = this.conveyorbeltDictionary[conveyorbeltNumber].length;
         switch(packagesOnConveyorbelt){
             case 1:
-                document.getElementById("package"+thePackage.id).style.animation = "move-0-3 7s linear forwards";
+                document.getElementById("package"+thePackage.id).style.animation = "move-0-3 5s linear forwards";
                 break;
             case 2:
-                document.getElementById("package"+thePackage.id).style.animation = "move-0-2 4.8s linear forwards";
+                document.getElementById("package"+thePackage.id).style.animation = "move-0-2 3s linear forwards";
                 break;
             case 3:
-                document.getElementById("package"+thePackage.id).style.animation = "move-0-1 2.3s linear forwards";
+                document.getElementById("package"+thePackage.id).style.animation = "move-0-1 1s linear forwards";
                 break;
         }
     }

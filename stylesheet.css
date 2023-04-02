@@ -1,8 +1,8 @@
 :root {
-    --package-spawn-point: 350px;
-    --package-position-1: 300px;
-    --package-position-2: 190px;
-    --package-position-3: 80px;
+    --package-spawn-point: 340px;
+    --package-position-1: 290px;
+    --package-position-2: 180px;
+    --package-position-3: 70px;
 }
 
 .form-group {
@@ -95,15 +95,16 @@
 .conveyorbelt {
     margin-top: 90px;
     margin-bottom: 30px;
+    margin-left: -10px;
     height:80px;
-    width:420px;
+    width:390px;
 }
 
 .tube {
-    margin-top: 65px;
+    margin-top: 45px;
     margin-bottom: 55px;
     height:80px;
-    width:50px;
+    width:100px;
     cursor: pointer;
 }
 
