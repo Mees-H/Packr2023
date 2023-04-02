@@ -76,6 +76,7 @@ class Package {
 
         tetriomino.onmousedown = function(event) {
 
+            tetriomino.style.cursor = "move";
             let shiftX = event.clientX - tetriomino.getBoundingClientRect().left;
             let shiftY = 0;
             if (tetriomino.classList.contains("package-drawsize-2")) {
@@ -183,8 +184,6 @@ class Package {
                         }
                 });
 
-                console.log(counter);
-                console.log(counter_max);
                 if (occupied || counter < counter_max) {
                     alert("You cannot place a package here!");
                     object.conveyorbelt.deletePackageFromConveyorbelt(object);

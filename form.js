@@ -244,7 +244,7 @@ class Form {
 
     createTruck() {
         let truck = new Truck(this.length, this.width, this.interval, this.type);
-        truck.addTruck();
+        setTimeout(function() {truck.addTruck()}, this.interval * 1000);
     }
 
     validate() {
