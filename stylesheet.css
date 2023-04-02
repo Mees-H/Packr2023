@@ -1,8 +1,8 @@
 :root {
-    --package-spawn-point: 385px;
+    --package-spawn-point: 360px;
     --package-position-1: 300px;
-    --package-position-2: 200px;
-    --package-position-3: 100px;
+    --package-position-2: 190px;
+    --package-position-3: 80px;
 }
 
 .form-group {
@@ -162,9 +162,9 @@
 }
 
 .package-drawsize-4 {
-    height: 25px;
+    height: 50px;
     width: 100px;
-    margin-top: 25px;
+    padding-top: 25px;
 }
 
 @keyframes move-0-3 {
