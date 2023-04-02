@@ -31,6 +31,11 @@ class ConveyorbeltQueue {
         this.reloadQueNumber();
     }
 
+    addPackageToBeginingOfQueue(newPackage) {
+        this.packages.unshift(newPackage);
+        this.reloadQueNumber();
+    }
+
     getPackageFromQueue() {
         if (this.getQueueLength() != 0){
             let firstPackage = this.packages[0];

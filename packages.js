@@ -188,7 +188,7 @@ class Package {
                     alert("You cannot place a package here!");
                     object.conveyorbelt.deletePackageFromConveyorbelt(object);
                     let queue = object.queue;
-                    queue.addPackageToQueue(object);
+                    queue.addPackageToBeginingOfQueue(object);
                     this.remove();
                     return;
                 }
