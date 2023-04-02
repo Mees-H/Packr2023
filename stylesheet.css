@@ -161,6 +161,12 @@
     width: 75px;
 }
 
+.package-drawsize-4 {
+    height: 25px;
+    width: 100px;
+    margin-top: 25px;
+}
+
 @keyframes move-0-3 {
     from {right: var(--package-spawn-point);}
     to {right: var(--package-position-3);}

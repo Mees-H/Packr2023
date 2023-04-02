@@ -19,7 +19,7 @@ class Package {
         switch (this.shape) {
             case 1:
                 this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Tetromino_I_Horizontal.svg/150px-Tetromino_I_Horizontal.svg.png";
-                this.drawsize = "package-drawsize-1";
+                this.drawsize = "package-drawsize-4";
                 this.color = "lightblue";
                 break;
             case 2:
