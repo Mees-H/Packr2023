@@ -36,6 +36,11 @@ class Truck {
         trucks[this.docknumber].appendChild(canTruckDrive);
 
         trucks[this.docknumber].appendChild(truck);
+
+        let truckNumber = document.createElement("h5");
+        truckNumber.textContent = truck.id;
+        truckNumber.className = "trucknumber";
+        trucks[this.docknumber].appendChild(truckNumber);
     }
 
     changeTrucks() {

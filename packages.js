@@ -22,7 +22,7 @@ class Package {
             case 1:
                 this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Tetromino_I_Horizontal.svg/150px-Tetromino_I_Horizontal.svg.png";
                 this.drawsize = "package-drawsize-4";
-                this.color = "lightblue";
+                this.color = "cyan";
                 break;
             case 2:
                 this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Tetromino_O_Single.svg/75px-Tetromino_O_Single.svg.png";
@@ -220,7 +220,7 @@ class Package {
 
                     tetriomino.style.left = Xvar*-25 + "px";
                     tetriomino.style.top = Yvar*-25 + "px";
-                    
+
                     object.conveyorbelt.deletePackageFromConveyorbelt(object);
 
                     tetriomino.remove();

@@ -52,6 +52,7 @@
 .truck {
     height: 200px;
     width: 200px;
+    cursor: pointer;
 }
 
 .can-truck-drive {
@@ -89,7 +90,6 @@
 .conveyorbeltRow {
     display: flex;
     flex-direction: row;
-
 }
 
 .conveyorbelt {
@@ -133,6 +133,13 @@
     right: 1%;
 }
 
+.trucknumber {
+    margin-top: -140px;
+    margin-bottom: 116px;
+    margin-left: 63px;
+    width: 10px;
+}
+
 .btn-secondary {
     width:75px;
     height:50px;
@@ -148,6 +155,7 @@
     position: absolute;
     animation-iteration-count: 1;
     z-index: 10;
+    cursor: pointer;
 }
 
 .avoid-clicks {

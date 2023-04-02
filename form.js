@@ -249,9 +249,10 @@ class Form {
 
     createTruck() {
         let truck = new Truck(this.length, this.width, this.interval, this.type);
+        let self = this;
         setTimeout(function() {
             truck.addTruck();
-            this.weather.refreshAllCanCarDrive();
+            self.weather.refreshAllCanCarDrive();
         }, this.interval * 1000);
     }
 

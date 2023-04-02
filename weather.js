@@ -109,7 +109,6 @@ class Weather {
                 }
             }
             if (canDriveArray[i].className.includes("type-Pallets")) {
-                console.log("pallets");
                 if (this.windspeed > 20){
                     canDriveArray[i].textContent = "Its too windy to drive.";
                 }
